@@ -1,5 +1,6 @@
-package com.milano.milanopastas.security;
+package com.milano.milanopastas.config;
 
+import com.milano.milanopastas.security.JwtAuthFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,7 +29,9 @@ public class SecurityConfig {
 
                         // 🔒 SOLO ADMIN (según método)
                         .requestMatchers(HttpMethod.GET, "/api/orders/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/products/**").hasRole("ADMIN")   // solo si querés proteger algo extra
+
+                        // prueba upload
+                        //.requestMatchers(HttpMethod.POST, "/api/products/*/upload-image").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/products/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/products/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasRole("ADMIN")
@@ -40,7 +43,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/products/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/orders").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
-                        .requestMatchers("api/admin/setup").permitAll()
+                        .requestMatchers("/api/admin/setup").permitAll()
 
                         // 🔐 Cualquier otro requiere autenticación
                         .anyRequest().authenticated()
