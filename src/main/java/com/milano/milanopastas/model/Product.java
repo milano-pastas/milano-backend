@@ -18,16 +18,17 @@ public class Product {
     @Column(length=500)
     private String description;
 
-//    @ManyToOne(optional=false, fetch = FetchType.LAZY)
-//    @JoinColumn(name="category_id")
-//    private Category category;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable=false)
+    @Builder.Default
+    private Category category = Category.OTROS;
 
     @Column(nullable=false, precision = 12, scale = 2)
     private BigDecimal price;
 
     private String imageUrl;
 
-    private String unit; // "gr", "un", "kg", etc.
+    private String unit; // "gr", "un", "kg", etc. TODO preguntar se cobra cada X gramos, kilos??
 
     @Column(nullable=false)
     private boolean active = true;

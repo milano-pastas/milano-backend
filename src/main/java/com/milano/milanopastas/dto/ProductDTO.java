@@ -19,5 +19,7 @@ public class ProductDTO {
     private String unit;       // "gr", "un", "kg", etc.
     private String imageUrl;
 
+    private String category;
+
     private boolean active;
 }

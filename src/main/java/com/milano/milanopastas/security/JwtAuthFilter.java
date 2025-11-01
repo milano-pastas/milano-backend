@@ -27,15 +27,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
             throws ServletException, IOException {
 
+        System.out.println("🧩 Header Authorization: " + request.getHeader("Authorization"));
+
         try {
-            String contentType = request.getContentType();
-
-            // 🔒 Si es multipart, no procesamos JWT ni tocamos el request
-            if (contentType != null && contentType.toLowerCase().startsWith("multipart/")) {
-                filterChain.doFilter(request, response);
-                return;
-            }
-
             final String authHeader = request.getHeader("Authorization");
 
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
@@ -55,12 +49,10 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
 
-            filterChain.doFilter(request, response);
-
         } catch (Exception e) {
             e.printStackTrace();
-            filterChain.doFilter(request, response);
         }
-    }
 
+        filterChain.doFilter(request, response);
+    }
 }
