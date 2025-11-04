@@ -28,7 +28,9 @@ public class SecurityConfig {
                     var config = new org.springframework.web.cors.CorsConfiguration();
                     config.setAllowedOrigins(java.util.List.of("http://localhost:5173",
                             "http://172.20.10.3:5173",
-                            "https://programmable-kerrie-overemotionally.ngrok-free.dev"
+                            "https://milano-frontend-kklvupyr7-matias-projects-97c52f2f.vercel.app",
+                            "https://milano-frontend-khaki.vercel.app",
+                            "https://milano-frontend-matias-projects-97c52f2f.vercel.app"
                     ));
                     config.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                     config.setAllowedHeaders(java.util.List.of("*"));
