@@ -28,8 +28,11 @@ public class Product {
 
     private String imageUrl;
 
-    private String unit; // "gr", "un", "kg", etc. TODO preguntar se cobra cada X gramos, kilos??
+    private String unit; // 0 si kilos, numeros de unidades sino
 
     @Column(nullable=false)
     private boolean active = true;
+
+    @Column(length=500)
+    private String sabores;
 }

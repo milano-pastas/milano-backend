@@ -16,6 +16,7 @@ public interface ProductMapper {
         p.setName(dto.getName());
         p.setDescription(dto.getDescription());
         p.setPrice(dto.getPrice());
+        p.setSabores(dto.getSabores());
         try {
             if (dto.getCategory() != null)
                 p.setCategory(Category.valueOf(dto.getCategory()));
@@ -29,7 +30,20 @@ public interface ProductMapper {
         return p;
     }
 
-    ProductDTO toDTO(Product entity);
+    default ProductDTO toDTO(Product entity) {
+        if (entity == null) return null;
+        ProductDTO dto = new ProductDTO();
+        dto.setId(entity.getId());
+        dto.setName(entity.getName());
+        dto.setDescription(entity.getDescription());
+        dto.setPrice(entity.getPrice());
+        dto.setSabores(entity.getSabores());  // ✅ ADD THIS
+        dto.setCategory(entity.getCategory() != null ? entity.getCategory().name() : null);
+        dto.setUnit(entity.getUnit());
+        dto.setImageUrl(entity.getImageUrl());
+        dto.setActive(entity.isActive());
+        return dto;
+    }
 
     @Named("enumToString")
     static String enumToString(Category category) {

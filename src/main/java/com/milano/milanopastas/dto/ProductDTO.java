@@ -11,6 +11,7 @@ public class ProductDTO {
     private Long id;
     private String name;
     private String description;
+    private String sabores;
 
     @NotNull()
     @JsonFormat(shape = JsonFormat.Shape.STRING)
